@@ -1177,8 +1177,18 @@ const cryptocurrenciesById: Record<string, CryptoCurrency> = {
         code: "HBAR",
         magnitude: 8,
       },
+      {
+        name: "Tinybar",
+        code: "tHBAR",
+        magnitude: 0
+      }
     ],
-    explorerViews: [],
+    explorerViews: [
+      {
+        tx: "https://explorer.kabuto.sh/mainnet/transaction/$hash",
+        address: "https://explorer.kabuto.sh/mainnet/id/$address"
+      }
+    ],
   },
   hpb: {
     type: "CryptoCurrency",
@@ -2800,6 +2810,35 @@ const cryptocurrenciesById: Record<string, CryptoCurrency> = {
         tx: "https://crypto.org/explorer/croeseid/tx/$hash",
         address: "https://crypto.org/explorer/croeseid/account/$address",
       },
+    ],
+  },
+  hedera_testnet: {
+    type: "CryptoCurrency",
+    id: "hedera",
+    coinType: 3030,
+    name: "Hedera",
+    managerAppName: "Hedera",
+    ticker: "HBAR",
+    scheme: "hedera",
+    color: "#000",
+    family: "hedera",
+    units: [
+      {
+        name: "HBAR",
+        code: "HBAR",
+        magnitude: 8,
+      },
+      {
+        name: "Tinybar",
+        code: "tHBAR",
+        magnitude: 0
+      }
+    ],
+    explorerViews: [
+      {
+        tx: "https://explorer.kabuto.sh/testnet/transaction/$hash",
+        address: "https://explorer.kabuto.sh/testnet/id/$address"
+      }
     ],
   },
 };
