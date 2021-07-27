@@ -1,0 +1,41 @@
+{
+  "name": "@ledgerhq/hw-app-hedera",
+  "version": "1.0.0",
+  "description": "Ledger Hardware Wallet Hedera API",
+  "keywords": [
+    "Ledger",
+    "LedgerWallet",
+    "NanoS",
+    "Blue",
+    "Hardware Wallet",
+    "Hedera",
+    "Hashgraph",
+    "Hbar"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LedgerHQ/ledgerjs"
+  },
+  "bugs": {
+    "url": "https://github.com/LedgerHQ/ledgerjs/issues"
+  },
+  "homepage": "https://github.com/LedgerHQ/ledgerjs",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "lib/Hedera.js",
+  "module": "lib-es/Hedera.js",
+  "types": "lib/Hedera.d.ts",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@ledgerhq/hw-transport": "^6.2.0",
+    "bip32-path": "0.4.2"
+  },
+  "scripts": {
+    "clean": "bash ../../script/clean.sh",
+    "build": "bash ../../script/build.sh",
+    "watch": "bash ../../script/watch.sh",
+    "doc": "bash ../../script/doc.sh"
+  },
+  "gitHead": ""
+}
