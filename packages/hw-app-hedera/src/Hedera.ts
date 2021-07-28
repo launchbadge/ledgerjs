@@ -9,7 +9,7 @@ const CLA = 0xe0;
 const INS = {
   GET_VERSION: 0x00,
   GET_ADDR: 0x01,
-  SIGN: 0x02
+  SIGN: 0x02,
 };
 
 const PAYLOAD_TYPE_INIT = 0x00;
@@ -25,15 +25,11 @@ const SW_CANCEL = 0x6986;
 export default class Hedera {
   transport: Transport;
 
-  constructor(transport: Transport, scrambleKey: string = "BOIL") {
+  constructor(transport: Transport, scrambleKey = "BOIL") {
     this.transport = transport;
     transport.decorateAppAPIMethods(
       this,
-        [
-            "getAddress", 
-            "signTransaction", 
-            "getAppConfiguration"
-        ],
+      ["getAddress", "signTransaction", "getAppConfiguration"],
       scrambleKey
     );
   }
@@ -49,7 +45,10 @@ export default class Hedera {
     return data;
   }
 
-  foreach<T, A>(arr: T[], callback: (t: T, n: number) => Promise<A>): Promise<A[]> {
+  foreach<T, A>(
+    arr: T[],
+    callback: (t: T, n: number) => Promise<A>
+  ): Promise<A[]> {
     function iterate(index, array, result) {
       if (index >= array.length) {
         return result;
@@ -76,9 +75,9 @@ export default class Hedera {
     path: string,
     display?: boolean
   ): Promise<{
-    publicKey: string,
-    address: "",
-    returnCode: number
+    publicKey: string;
+    address: "";
+    returnCode: number;
   }> {
     const bipPath = BIPPath.fromString(path).toPathArray();
     const serializedPath = this.serializePath(bipPath);
@@ -106,7 +105,7 @@ export default class Hedera {
     return {
       publicKey: response.toString("hex"),
       address: "", // addresses are not derivable on device
-      returnCode
+      returnCode,
     };
   }
 
@@ -120,7 +119,7 @@ export default class Hedera {
   async signTransaction(
     path: string,
     message: string
-  ): Promise<{ signature: null | Buffer, returnCode: number }> {
+  ): Promise<{ signature: null | Buffer; returnCode: number }> {
     const bipPath = BIPPath.fromString(path).toPathArray();
     const serializedPath = this.serializePath(bipPath);
 
@@ -152,13 +151,11 @@ export default class Hedera {
           data,
           [SW_OK, SW_CANCEL]
         )
-        .then(
-            (apduResponse) => (response = apduResponse)
-        )
+        .then((apduResponse) => (response = apduResponse))
     ).then(() => {
       const errorCodeData = response.slice(-2);
       const returnCode = errorCodeData[0] * 0x100 + errorCodeData[1];
-      
+
       let signature: Buffer | null = null;
 
       if (response.length > 2) {
@@ -171,7 +168,7 @@ export default class Hedera {
 
       return {
         signature,
-        returnCode
+        returnCode,
       };
     });
   }
@@ -188,7 +185,7 @@ export default class Hedera {
    * }
    */
   async getAppConfiguration(): Promise<{
-    version: string
+    version: string;
   }> {
     const response = await this.transport.send(
       CLA,
