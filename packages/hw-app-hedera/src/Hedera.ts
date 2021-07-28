@@ -8,8 +8,8 @@ const CLA = 0xe0;
 
 const INS = {
   GET_VERSION: 0x00,
-  GET_ADDR: 0x01,
-  SIGN: 0x02,
+  GET_ADDR: 0x02,
+  SIGN: 0x04,
 };
 
 const PAYLOAD_TYPE_INIT = 0x00;
@@ -68,7 +68,7 @@ export default class Hedera {
    * @param display optionally enable or not the display
    * @return an object with a publicKey, address
    * @example
-   * const result = await hedera.getAddress("44'/3030'/0'/0'/0");
+   * const result = await hedera.getAddress("44/3030/0/0/0");
    * const { publicKey, address, returnCode } = result;
    */
   async getAddress(
